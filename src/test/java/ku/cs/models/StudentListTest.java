@@ -6,10 +6,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentListTest {
+    Student student;
     StudentList students;
     @BeforeEach
     void init() {
         students = new StudentList();
+        student = null;
     }
     @Test
     void testAddNewStudent() {
@@ -19,22 +21,23 @@ class StudentListTest {
 
     @Test
     void findStudentById() {
-        students.addNewStudent("Pongsiri","6610402167");
-        students.addNewStudent("A","66xxxxxxx");
-        Student student = students.findStudentById("66xxxxxxx");
+        students.addNewStudent("66xxxxxxxx","A");
+        student = students.findStudentById("66xxxxxxxx");
         assertEquals("A", student.getName());
-
     }
 
     @Test
     void giveScoreToId() {
+        students.addNewStudent("66xxxxxxxx","A");
+        students.giveScoreToId("66xxxxxxxx", 50);
+        assertEquals(50, students.findStudentById("66xxxxxxxx").getScore());
     }
 
     @Test
     void viewGradeOfId() {
+        students.addNewStudent("66xxxxxxxx","A");
+        students.giveScoreToId("66xxxxxxxx", 50);
+        assertEquals("D", students.viewGradeOfId("66xxxxxxxx"));
     }
 
-    @Test
-    void getStudents() {
-    }
 }
